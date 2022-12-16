@@ -1,0 +1,28 @@
+.nav{
+    background-color: white;
+}
+.box {
+    background-color: rgb(206, 197, 197);
+    border: black 1px solid ;
+}
+.columns {
+    background-color: rgb(206, 197, 197);
+    
+}
+.main-container {
+    margin: 1%;
+}
+.column {
+    border: black 1px solid ;
+}
+.box {
+    padding-bottom: 50%;
+}
+main{
+    background-color: rgb(49, 49, 119);
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+footer{
+    background-color: rgb(49, 49, 119) ;
+}
