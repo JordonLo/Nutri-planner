@@ -26,3 +26,13 @@ main{
 footer{
     background-color: rgb(49, 49, 119) ;
 }
+
+/* added class for current day in Calendar*/
+.current-date {
+  color: red;
+}
+
+
+
+
+
