@@ -29,6 +29,28 @@ for (var i = 0; i < startingDay; i++) {
   calendar += '<td></td>';
 }
 
+
+// Fill in the calendar with the days of the month
+for (var i = 1; i <= numberOfDays; i++) {
+  var className = "";
+  if (i === currentDate) {
+    className = "current-date";
+  }
+  calendar += '<td><button class="' + className + '" data-date="' + i + '">' + i + '</button></td>';
+
+  // If we have reached the end of a week, start a new row
+  if ((i + startingDay) % 7 === 0) {
+    calendar += '</tr><tr>';
+  }
+}
+
+// Close the calendar grid
+calendar += '</tr></table>';
+
+// Insert the calendar into the div with the id "calendar"
+document.getElementById('calendar').innerHTML = calendar;
+
+// Jordon changes (local storage for nutrition and calories)
 // Fill in the calendar with the days of the month
 for (var i = 1; i <= numberOfDays; i++) {
   var className = "";
