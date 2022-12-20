@@ -58,3 +58,20 @@ buttons.forEach(function(button) {
     console.log(clickedDate);
   });
 });
+
+var nutritionInput = document.querySelector("#Nutrition");
+var caloriesInput = document.querySelector("#Calories");
+var saveButton = document.querySelector("#save")
+
+saveButton.addEventListener("click",function(event) {
+  event.preventDefault();
+
+  var user = {
+  Nutrition: nutritionInput.value.trim(),
+  Calories: caloriesInput.value.trim(),
+};
+
+localStorage.setItem("user", JSON.stringify(user));
+
+});
+
