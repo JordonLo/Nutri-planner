@@ -1,62 +1,47 @@
-//the calendar
-// Get the current month and year
-var d = new Date();
-var month = d.getMonth();
-var year = d.getFullYear();
-var currentDate = d.getDate();
 
-// Get the first day of the month
-var firstDay = new Date(year, month, 1);
-var startingDay = firstDay.getDay();
+const daysTag = document.querySelector(".days"),
+currentDate = document.querySelector(".current-date"),
+prevNextIcon = document.querySelectorAll(".icons span");
 
-// Get the number of days in the month
-var numberOfDays = new Date(year, month + 1, 0).getDate();
+let date = new Date(),
+currYear = date.getFullYear(),
+currMonth = date.getMonth();
 
-// Create an array of month names
-var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
-// Get the name of the current month
-var currentMonth = monthNames[month];
-
-// Create the calendar grid as a table
-var calendar = '<h2>' + currentMonth + '</h2>';
-calendar += '<table>';
-calendar += '<tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>';
-calendar += '<tr>';
-
-// Fill in the calendar with the appropriate number of blank cells
-for (var i = 0; i < startingDay; i++) {
-  calendar += '<td></td>';
+const months = ["January", "February", "March", "April", "May", "June", "July",
+              "August", "September", "October", "November", "December"];
+const renderCalendar = () => {
+    let firstDayofMonth = new Date(currYear, currMonth, 1).getDay(), 
+    lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate(),
+    lastDayofMonth = new Date(currYear, currMonth, lastDateofMonth).getDay(), 
+    lastDateofLastMonth = new Date(currYear, currMonth, 0).getDate(); 
+    let liTag = "";
+    for (let i = firstDayofMonth; i > 0; i--) { 
+        liTag += `<li class="inactive">${lastDateofLastMonth - i + 1}</li>`;
+    }
+    for (let i = 1; i <= lastDateofMonth; i++) { 
+        let isToday = i === date.getDate() && currMonth === new Date().getMonth() 
+                     && currYear === new Date().getFullYear() ? "active" : "";
+        liTag += `<li class="${isToday}">${i}</li>`;
+    }
+    for (let i = lastDayofMonth; i < 6; i++) { 
+        liTag += `<li class="inactive">${i - lastDayofMonth + 1}</li>`
+    }
+    currentDate.innerText = `${months[currMonth]} ${currYear}`; 
+    daysTag.innerHTML = liTag;
 }
-
-// Fill in the calendar with the days of the month
-for (var i = 1; i <= numberOfDays; i++) {
-  var className = "";
-  if (i === currentDate) {
-    className = "current-date";
-  }
-  calendar += '<td><button class="' + className + '" data-date="' + i + '">' + i + '</button></td>';
-
-  // If we have reached the end of a week, start a new row
-  if ((i + startingDay) % 7 === 0) {
-    calendar += '</tr><tr>';
-  }
-}
-
-// Close the calendar grid
-calendar += '</tr></table>';
-
-// Insert the calendar into the div with the id "calendar"
-document.getElementById('calendar').innerHTML = calendar;
-
-// Add an event listener to each button in the calendar
-var clickedDate;
-var buttons = document.querySelectorAll('button');
-buttons.forEach(function(button) {
-  button.addEventListener('click', function() {
-    clickedDate=this.getAttribute('data-date');
-    console.log(clickedDate);
-  });
+renderCalendar();
+prevNextIcon.forEach(icon => { 
+    icon.addEventListener("click", () => { 
+        currMonth = icon.id === "prev" ? currMonth - 1 : currMonth + 1;
+        if(currMonth < 0 || currMonth > 11) { 
+            date = new Date(currYear, currMonth);
+            currYear = date.getFullYear(); 
+            currMonth = date.getMonth(); 
+        } else {
+            date = new Date(); 
+        }
+        renderCalendar();
+    });
 });
 
 var nutritionInput = document.querySelector("#Nutrition");
