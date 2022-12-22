@@ -1,6 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap'); 
-@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap'); 
+@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap'); */
 
+@import url('https://fonts.googleapis.com/css2?family=MuseoModerno:wght@600&display=swap');
 
 body{
     background-color: rgb(64, 65, 66);
@@ -12,7 +13,18 @@ body{
     margin: 0 auto;
     text-align: center;
 }
-
+.save{
+  background-color: rgb(250, 133, 54);
+  border-radius: 8px;
+  border-color: rgb(250, 133, 54);
+  font-family: 'MuseoModerno' ;
+}
+.submit {
+ background-color: rgb(250, 133, 54);
+ border-radius: 8px;
+ border-color: rgb(250, 133, 54);
+ font-family: 'MuseoModerno' ;
+}
 
 .box {
     background-color: rgb(120, 124, 128); 
@@ -48,7 +60,7 @@ main{
 } */
 /*  */
 *{
-    font-family: 'Bungee' , cursive;
+  font-family: 'MuseoModerno' ;
 }
 
 .wrapper{
