@@ -1,4 +1,3 @@
-
 const daysTag = document.querySelector(".days"),
 currentDate = document.querySelector(".current-date"),
 prevNextIcon = document.querySelectorAll(".icons span");
@@ -184,3 +183,77 @@ eButtonEl.addEventListener('click', function(){
   egetRecipeApi(eInputEl.value);
   //if (eInputEl.value != null){ }
 })
+
+// Jordon changes to calories horizontal graph
+const config = {
+  type: 'bar',
+  data: data,
+  options: {
+    indexAxis: 'y',
+    // Elements options apply to all of the options unless overridden in a dataset
+    // In this case, we are setting the border of each horizontal bar to be 2px wide
+    elements: {
+      bar: {
+        borderWidth: 2,
+      }
+    },
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'right',
+      },
+      title: {
+        display: true,
+        text: 'Chart.js Horizontal Bar Chart'
+      }
+    }
+  },
+};
+
+const ctx = document.getElementById('myChart');
+const DATA_COUNT = 24;
+const NUMBER_CFG = {count: DATA_COUNT, min: 0, max: 3000};
+
+const labels = Utils.hours({count: 24});
+const data = {
+  labels: labels,
+  datasets: [
+    {
+      label: 'Calories',
+      data: Utils.numbers(NUMBER_CFG),
+      borderColor: Utils.CHART_COLORS.red,
+      backgroundColor: Utils.transparentize(Utils.CHART_COLORS.red, 0.5),
+    },
+  ]
+};
+
+const actions = [
+  
+  {
+    name: 'Add Data',
+    handler(chart) {
+      const data = chart.data;
+      if (data.datasets.length > 0) {
+        data.labels = Utils.months({count: data.labels.length + 1});
+
+        for (let index = 0; index < data.datasets.length; ++index) {
+          data.datasets[index].data.push(Utils.rand(-100, 100));
+        }
+
+        chart.update();
+      }
+    }
+  },
+  {
+    name: 'Remove Data',
+    handler(chart) {
+      chart.data.labels.splice(-1, 1); // remove the label first
+
+      chart.data.datasets.forEach(dataset => {
+        dataset.data.pop();
+      });
+
+      chart.update();
+    }
+  }
+];
