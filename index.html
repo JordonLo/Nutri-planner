@@ -37,7 +37,6 @@
                   <input class="input is-large" type="text" id="Nutrition" placeholder="What you ate">
                   <input class="input is-large" type="text" id="Calories" placeholder="Amount of calories">
                   <button id="save">Save</button>
-                  <div class="card-content graph"> <canvas id="myChart"></canvas> </div>
                 </div>
                 
               </div>
@@ -84,12 +83,19 @@
     </div>
     <div class="columns main-container">
         <div class="column">
+                
                 <div class="box">
+                  <form id="dailyTask-form" class="box">
                   <a id="daily task"></a>
                   <p class="title is-5 has-text-centered">Daily Tasks</p>
-                  <input class="input is-large" type="text" placeholder="Large input">
+                  <input class="input is-large" type="text" id="dailytask-text" placeholder="Add a Daily Task:">
+                  <button id="save">Save</button>
+                  <p>Daily Task Count: <span id="dailyTask-count">0</span></p>
+                  <ul id="dailytask-list"></ul>
+                   </form>
                 </div>
-              </div>
+
+        </div>
               <div class="column">
                 <div class="box">
                   <p class="title is-5 has-text-centered">Calendar</p>
@@ -129,7 +135,6 @@
     </footer>
     <!--Add a script link-->
     <script src="./assets/script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 
 </html>

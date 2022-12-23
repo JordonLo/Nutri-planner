@@ -1,48 +1,91 @@
-const daysTag = document.querySelector(".days"),
-currentDate = document.querySelector(".current-date"),
-prevNextIcon = document.querySelectorAll(".icons span");
+// const daysTag = document.querySelector(".days"),
+// currentDate = document.querySelector(".current-date"),
+// prevNextIcon = document.querySelectorAll(".icons span");
 
-let date = new Date(),
-currYear = date.getFullYear(),
-currMonth = date.getMonth();
+// let date = new Date(),
+// currYear = date.getFullYear(),
+// currMonth = date.getMonth();
 
-const months = ["January", "February", "March", "April", "May", "June", "July",
-              "August", "September", "October", "November", "December"];
-const renderCalendar = () => {
-    let firstDayofMonth = new Date(currYear, currMonth, 1).getDay(), 
-    lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate(),
-    lastDayofMonth = new Date(currYear, currMonth, lastDateofMonth).getDay(), 
-    lastDateofLastMonth = new Date(currYear, currMonth, 0).getDate(); 
-    let liTag = "";
-    for (let i = firstDayofMonth; i > 0; i--) { 
-        liTag += `<li class="inactive">${lastDateofLastMonth - i + 1}</li>`;
-    }
-    for (let i = 1; i <= lastDateofMonth; i++) { 
-        let isToday = i === date.getDate() && currMonth === new Date().getMonth() 
-                     && currYear === new Date().getFullYear() ? "active" : "";
-        liTag += `<li class="${isToday}">${i}</li>`;
-    }
-    for (let i = lastDayofMonth; i < 6; i++) { 
-        liTag += `<li class="inactive">${i - lastDayofMonth + 1}</li>`
-    }
-    currentDate.innerText = `${months[currMonth]} ${currYear}`; 
-    daysTag.innerHTML = liTag;
-}
-renderCalendar();
-prevNextIcon.forEach(icon => { 
-    icon.addEventListener("click", () => { 
-        currMonth = icon.id === "prev" ? currMonth - 1 : currMonth + 1;
-        if(currMonth < 0 || currMonth > 11) { 
-            date = new Date(currYear, currMonth);
-            currYear = date.getFullYear(); 
-            currMonth = date.getMonth(); 
-        } else {
-            date = new Date(); 
-        }
-        renderCalendar();
-    });
-});
+// const months = ["January", "February", "March", "April", "May", "June", "July",
+//               "August", "September", "October", "November", "December"];
+// const renderCalendar = () => {
+//     let firstDayofMonth = new Date(currYear, currMonth, 1).getDay(), 
+//     lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate(),
+//     lastDayofMonth = new Date(currYear, currMonth, lastDateofMonth).getDay(), 
+//     lastDateofLastMonth = new Date(currYear, currMonth, 0).getDate(); 
+//     let liTag = "";
+//     for (let i = firstDayofMonth; i > 0; i--) { 
+//         liTag += `<li class="inactive">${lastDateofLastMonth - i + 1}</li>`;
+//     }
+//     for (let i = 1; i <= lastDateofMonth; i++) { 
+//         let isToday = i === date.getDate() && currMonth === new Date().getMonth() 
+//                      && currYear === new Date().getFullYear() ? "active" : "";
+//         liTag += `<li class="${isToday}">${i}</li>`;
+//     }
+//     for (let i = lastDayofMonth; i < 6; i++) { 
+//         liTag += `<li class="inactive">${i - lastDayofMonth + 1}</li>`
+//     }
+//     currentDate.innerText = `${months[currMonth]} ${currYear}`; 
+//     daysTag.innerHTML = liTag;
+// }
 
+
+// // Fill in the calendar with the days of the month
+// for (var i = 1; i <= numberOfDays; i++) {
+//   var className = "";
+//   if (i === currentDate) {
+//     className = "current-date";
+//   }
+//   calendar += '<td><button class="' + className + '" data-date="' + i + '">' + i + '</button></td>';
+
+//   // If we have reached the end of a week, start a new row
+//   if ((i + startingDay) % 7 === 0) {
+//     calendar += '</tr><tr>';
+//   }
+// }
+
+// // Close the calendar grid
+// calendar += '</tr></table>';
+
+// // Insert the calendar into the div with the id "calendar"
+// document.getElementById('calendar').innerHTML = calendar;
+
+// // Jordon changes (local storage for nutrition and calories)
+// // Fill in the calendar with the days of the month
+// for (var i = 1; i <= numberOfDays; i++) {
+//   var className = "";
+//   if (i === currentDate) {
+//     className = "current-date";
+//   }
+//   calendar += '<td><button class="' + className + '" data-date="' + i + '">' + i + '</button></td>';
+// renderCalendar();
+// prevNextIcon.forEach(icon => { 
+//     icon.addEventListener("click", () => { 
+//         currMonth = icon.id === "prev" ? currMonth - 1 : currMonth + 1;
+//         if(currMonth < 0 || currMonth > 11) { 
+//             date = new Date(currYear, currMonth);
+//             currYear = date.getFullYear(); 
+//             currMonth = date.getMonth(); 
+//         } else {
+//             date = new Date(); 
+//         }
+//         renderCalendar();
+//     });
+// });
+
+//   // If we have reached the end of a week, start a new row
+//   if ((i + startingDay) % 7 === 0) {
+//     calendar += '</tr><tr>';
+//   }
+// }
+
+// // Close the calendar grid
+// calendar += '</tr></table>';
+
+// // Insert the calendar into the div with the id "calendar"
+// document.getElementById('calendar').innerHTML = calendar;
+
+// Jordon changes (local storage for nutrition and calories)
 var nutritionInput = document.querySelector("#Nutrition");
 var caloriesInput = document.querySelector("#Calories");
 var saveButton = document.querySelector("#save")
@@ -59,6 +102,84 @@ localStorage.setItem("user", JSON.stringify(user));
 
 });
 
+var dailytaskInput = document.querySelector("#dailytask-text");
+var dailytaskList = document.querySelector("#dailytask-list");
+var dailyTaskForm = document.querySelector("#dailyTask-form");
+var dailytaskCountSpan = document.querySelector("#dailyTask-count");
+var dailyTasks = [];
+
+function renderdailyTasks() {
+  
+  dailytaskList.innerHTML = "";
+  dailytaskCountSpan.textContent = dailyTasks.length;
+  
+  for (var i = 0; i < dailyTasks.length; i++) {
+    var dailyTask = dailyTasks[i];
+
+    var li = document.createElement("li");
+    li.textContent = dailyTask;
+    li.setAttribute("data-index", i);
+
+    var button = document.createElement("button");
+    button.textContent = "Complete ✔️";
+
+    li.appendChild(button);
+    dailytaskList.appendChild(li);
+  }
+}
+
+function init() {
+ 
+  var storedDailytasks = JSON.parse(localStorage.getItem("dailyTasks"));
+
+  if (storedDailytasks !== null) {
+    dailyTasks = storedDailytasks;
+  }
+
+  renderdailyTasks();
+}
+
+function storeDailytasks() {
+  localStorage.setItem("dailyTasks", JSON.stringify(dailyTasks));
+}
+
+dailyTaskForm.addEventListener("click", function(event) {
+  event.preventDefault();
+
+  // var dailytaskInput = dailytaskInput.value.trim();
+
+  // Return from function early if submitted todoText is blank
+  if (dailytaskInput === "") {
+    return;
+  }
+
+  // Add new todoText to todos array, clear the input
+  dailyTasks.push(dailytaskInput);
+  dailytaskInput.value = "";
+
+  // Store updated todos in localStorage, re-render the list
+  storeDailytasks();
+  renderdailyTasks();
+});
+
+// Add click event to todoList element
+dailytaskList.addEventListener("click", function(event) {
+  var element = event.target;
+
+  // Checks if element is a button
+  if (element.matches("button") === true) {
+    // Get its data-index value and remove the todo element from the list
+    var index = element.parentElement.getAttribute("data-index");
+    dailyTasks.splice(index, 1);
+
+    // Store updated todos in localStorage, re-render the list
+    storeDailytasks();
+    renderdailyTasks();
+  }
+});
+
+// Calls init to retrieve data and render it to the page on load
+init()
 
 
 //ELENA CODE FOR RECIPE
@@ -185,27 +306,3 @@ eButtonEl.addEventListener('click', function(){
 })
 
 // Jordon changes to calories horizontal graph
-
-const DATA_COUNT = 24;
-const NUMBER_CFG = {count: DATA_COUNT, min: 0, max: 3000};
-
-const ctx = document.getElementById('myChart');
-
-  new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-      datasets: [{
-        label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
-    }
-  });
