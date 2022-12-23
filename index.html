@@ -15,13 +15,13 @@
               <a class="link is-info" style="color: white;">Home</a>
             </p>
             <p class="level-item has-text-centered">
-              <a class="link is-info" style="color: white;">Nutrition/meals</a>
+              <a class="link is-info" style="color: white;">Nutrition/Calories</a>
             </p>
             <p class="level-item has-text-centered">
                 <h1 class="title is-1" style="color: rgb(250, 133, 54); text-align: center;">Nutriplanner</h1>
             </p>
             <p class="level-item has-text-centered">
-              <a class="link is-info" style="color: white;">Recipes</a>
+              <a class="link is-info" style="color: white;">Recipes/Meals</a>
             </p>
             <p class="level-item has-text-centered">
               <a class="link is-info" style="color: white;">Daily Tasks/Calendar</a>
@@ -38,6 +38,7 @@
                   <input class="input is-large" type="text" id="Calories" placeholder="Amount of calories">
                   <button id="save">Save</button>
                 </div>
+                
               </div>
               <div class="column">
                 <div id="recipe-box" class="box">
@@ -82,8 +83,12 @@
     </div>
     <div class="columns main-container">
         <div class="column">
-                
                 <div class="box">
+                  <form id="dailyTask-form" class="box">
+                  <a id="daily task"></a>
+                  <p class="title is-5 has-text-centered">Daily Tasks</p>
+                  <input class="input is-large" type="text" id="dailytask-text" placeholder="Add a Daily Task:">
+                  <button id="save">Save</button>
                   <form id="dailyTasks-form" class="box">
                   <a id="daily task"></a>
                   <p class="title is-5 has-text-centered">Daily Tasks</p>
@@ -92,7 +97,6 @@
                   <ul id="dailytask-list"></ul>
                    </form>
                 </div>
-
         </div>
               <div class="column">
                 <div class="box">
