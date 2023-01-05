@@ -109,6 +109,12 @@ eCookingLinkEl.setAttribute("href",eRecipeLinkOrig);
 eCookingLinkEl.textContent = '-- Cooking details --';
 eContentEl.appendChild(eCookingLinkEl);
 
+var eBrackingElement = document.createElement('br');
+eMainBoxEl.appendChild(eBrackingElement);
+
+//clear input
+eInputEl.value = "";
+
 });
 }
 
