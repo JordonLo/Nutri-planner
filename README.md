@@ -23,7 +23,7 @@ When I click the calendar
 Then it will select the day given
 
 ### Links
-- Live Site URL:
+- Live Site URL:https://jordonlo.github.io/Nutri-planner/
 
 ### Built with
 - HTML
