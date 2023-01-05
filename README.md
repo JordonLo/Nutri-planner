@@ -23,7 +23,7 @@ When I click the calendar
 Then it will select the day given
 
 ### Links
-- Live Site URL:
+- Live Site URL:https://jordonlo.github.io/Nutri-planner/
 
 ### Built with
 - HTML
@@ -40,3 +40,5 @@ Continues development would be layout changes/ as well as automated calorie trac
 
 ## Author
 Krista Ford/Jordon Lor/ Elena Chernousova
+![Screenshot (80)](https://user-images.githubusercontent.com/91912984/210690770-5e94b906-6585-44d8-9bd9-952b08f0fbc9.png)
+![Screenshot (81)](https://user-images.githubusercontent.com/91912984/210690782-7a3a7060-a13f-4f58-8179-6ff231fc0464.png)
